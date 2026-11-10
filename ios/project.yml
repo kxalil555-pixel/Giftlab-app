@@ -1,0 +1,30 @@
+name: GiftLab
+options: { bundleIdPrefix: com.example, deploymentTarget: { iOS: "15.0" } }
+settings:
+  base: { SWIFT_VERSION: "5.0", MARKETING_VERSION: "1.0.0", CURRENT_PROJECT_VERSION: "1" }
+targets:
+  GiftLab:
+    type: application
+    platform: iOS
+    sources:
+      - path: App
+        excludes: ["Info.plist", "config.json", "telegram-shim.js", "Assets.xcassets"]
+      - { path: App/Assets.xcassets }
+      - { path: App/config.json, buildPhase: resources }
+      - { path: App/telegram-shim.js, buildPhase: resources }
+      - { path: ../miniapp, type: folder, buildPhase: resources }
+    info:
+      path: App/Info.plist
+      properties:
+        CFBundleDisplayName: Sovg‘alar
+        UILaunchScreen: {}
+        UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
+        UIRequiresFullScreen: true
+        ITSAppUsesNonExemptEncryption: false
+        NSAppTransportSecurity: { NSAllowsArbitraryLoads: true }
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.example.giftlab
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        TARGETED_DEVICE_FAMILY: "1"
+        INFOPLIST_KEY_UIStatusBarStyle: UIStatusBarStyleDefault
